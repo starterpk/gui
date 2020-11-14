@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <!-- Primary Meta Tags -->
+  <title>
+    Svelte Starter Pack
+  </title>
+  <meta name="title" content=" Website Starter Pack" />
+  <meta name="description" content=" Website Starter Pack" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://starterpk.com" />
+  <meta property="og:title" content=" Website Starter Pack" />
+  <meta property="og:description" content=" Website Starter Pack" />
+  <meta property="og:image" content="https://starterpk.com/logo.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://starterpk.com/" />
+  <meta property="twitter:title" content=" Website Starter Pack" />
+  <meta property="twitter:description" content=" Website Starter Pack" />
+  <meta property="twitter:image" content="https://starterpk.com/logo.png" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>    
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="script.js"></script>
+
+
+
+    <div class="container">
+      <div class="col-50">
+        <img src="logo.png" class="logo" alt="img" />
+      </div>
+      <div class="col-50">
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="col-50">
+        <label for="directory">Where would you like to create your project?</label>
+      </div>
+      <div class="col-50">
+        <button onclick="getDir(event, '/', 'forward')">getdirrr</button>
+        <button onclick="getDir(event, undefined, 'back')">back</button>
+        <input id="directory" disabled value="/  ">
+        <div id="dir"></div>
+      </div>
+    </div>
+
+
+
+
+    <div class="container">
+      <div class="col-50">
+        <label for="projectName">What would you like to call your project?</label>
+      </div>
+      <div class="col-50">
+          <input name="projectName" id="projectName"/>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="col-50">
+        <label for="pack">What pack would you like to use?</label>
+      </div>
+      <div class="col-50">
+        <select name="pack" id="pack">
+          <% packs.forEach(function(pack){ %>
+            <option value=<%= pack.value %>><%= pack.name %></option>
+          <% }); %>
+        </select>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="col-50">
+      </div>
+      <div class="col-50">
+  
+
+        <p id="response"></p>
+      </div>  
+    </div>
+
+    <button onclick="createProject(event)">Submit</button>
+
+
+
+</body>
+
+</html>
