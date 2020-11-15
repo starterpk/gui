@@ -5,22 +5,24 @@ async function getDir(direction, path, event = undefined) {
       path,
       direction,
     });
-    let div = document.getElementById("dir");
-    let directory = document.getElementById("directory");
+    let directoriesList = document.getElementById("directories-list");
     let directoryNavbar = document.getElementById("directory-navbar");
 
     let backButton = `<div class="folder-icon" role="button" onclick="getDir('back', undefined, event)"></div>`;
 
     let directoryNavbarHTML = `
     <div class="directory-navbar" id="directory-navbar">
-      <div id="directory">${response.data.path.replaceAll("/", backButton)}</div>
+      <div class="directory-path">${response.data.path.replaceAll("/", backButton)}</div>
     </div>`;
 
     let responseHTML = response.data.directories
-      .map((folder) => `<button onclick="getDir('forward', '${folder}', event)">${folder}</button>`)
+      .map(
+        (folder) =>
+          `<button class="directory-option" onclick="getDir('forward', '${folder}', event)">${folder}</button>`
+      )
       .join("");
-    console.log(response);
-    div.innerHTML = responseHTML;
+
+    directoriesList.innerHTML = responseHTML;
     directoryNavbar.innerHTML = directoryNavbarHTML;
   } catch (error) {
     console.error(error);
