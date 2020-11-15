@@ -34,7 +34,6 @@
   <script src="script.js"></script>
 
 
-
     <div class="container">
       <div class="col-50">
         <img src="logo.png" class="logo" alt="img" />
@@ -48,10 +47,12 @@
         <label for="directory">Where would you like to create your project?</label>
       </div>
       <div class="col-50">
-        <button onclick="getDir(event, '/', 'forward')">getdirrr</button>
-        <button onclick="getDir(event, undefined, 'back')">back</button>
-        <input id="directory" disabled value="/  ">
-        <div id="dir"></div>
+        <div class="directory-container">
+          <div class="directory-navbar" id="directory-navbar">
+            <div id="directory">/</div>
+          </div>
+          <div id="dir"></div>
+        </div>
       </div>
     </div>
 

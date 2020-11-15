@@ -37,18 +37,21 @@ let userSelectedDirPosition = [];
 app.route("/dir").post((req, res) => {
   const direction = req.body.direction;
   const _path = req.body.path;
-  if (direction === "back") {
+  console.log(req.body.direction);
+  console.log(userSelectedDirPosition.length);
+  if (direction === "back" && userSelectedDirPosition.length) {
+    if (userSelectedDirPosition.length > 2) userSelectedDirPosition.pop(); // only pop if we're one level up from the root
+    if (userSelectedDirPosition.length > 1) userSelectedDirPosition.pop(); // pop twice to get rid of forward slash // if length is 1, we're back at the root of the drive
+  }
+  if (direction === "forward") {
     if (userSelectedDirPosition.length) {
-      userSelectedDirPosition.pop();
-    }
-  } else {
-    if (userSelectedDirPosition.length) {
-      userSelectedDirPosition.push(`${_path}/`);
+      if (userSelectedDirPosition.length > 1) userSelectedDirPosition.push("/");
+      userSelectedDirPosition.push(`${_path}`);
     } else {
       userSelectedDirPosition.push(_path);
     }
   }
-
+  console.log(userSelectedDirPosition.join(""));
   return readDir(userSelectedDirPosition.join(""), res);
 });
 

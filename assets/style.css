@@ -36,3 +36,25 @@ img {
     width: 100%;
   }
 }
+
+.directory-container {
+  border: 1px solid;
+  width: 100%;
+  max-width: 500px;
+  height: 200px;
+  overflow: scroll;
+}
+
+.directory-navbar {
+  width: 100%;
+  display: block;
+}
+
+.folder-icon {
+  background: url("folder.png");
+  background-size: contain;
+  background-position: center;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
