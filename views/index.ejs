@@ -33,8 +33,9 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="script.js"></script>
 
+  <div id="outer-container">
 
-    <div class="container">
+    <div class="logo-container">
       <div class="col-50">
         <img src="logo.png" class="logo" alt="img" />
       </div>
@@ -91,14 +92,29 @@
       <div class="col-50">
       </div>
       <div class="col-50">
-        <button class="submit-button" id="submit-button" onclick="createProject(event)">Submit</button>
-        <p id="response"></p>
+        <button class="btn-submit" id="btn-submit" onclick="toggleModal()">Submit</button>
       </div>  
     </div>
 
 
+    <div class="container">
+      <div class="col-50">
+      </div>
+      <div class="col-50">
+         <p id="response"></p>
+      </div>  
+    </div>
 
 
+  </div>
+
+  <div id="modal" class="modal hidden" data-visible="false">
+    <div id="modal-text"></div>
+    <div class="btn-container">
+      <button class="btn-cancel" onclick="toggleModal()">No</button>
+      <button class="btn-submit" onclick="handleCreateProject(event)">Yes</button>  
+    </div>
+  </div>
 </body>
 
 </html>

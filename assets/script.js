@@ -38,13 +38,59 @@ function handlePackChange(event) {
   packImg.innerHTML = img;
 }
 
+function toggleModal() {
+  let modal = document.getElementById("modal");
+  let modalText = document.getElementById("modal-text");
+  let page = document.getElementById("outer-container");
+
+  if (modal.dataset.visible === "false") {
+    let directory = document.getElementById("directory-path").textContent;
+    let projectName = document.getElementById("projectName").value;
+    let pack = document.getElementById("pack").value;
+    let textContent = `<h3>Do you wish to proceed with the following settings?</h3><br/><p>Pack: <strong>${pack}</strong></p><br/><p>Project Name: <strong>${projectName}</strong></p><br/><p>Location: <strong>${directory}</strong></p>`;
+    modalText.innerHTML = textContent;
+    modal.dataset.visible = "true";
+    page.classList.add("body-overlay");
+    modal.classList.remove("hidden");
+  } else {
+    modal.dataset.visible = "false";
+    modal.classList.add("hidden");
+    page.classList.remove("body-overlay");
+    modalText.innerHTML = "";
+  }
+}
+
+function disableAllInputs() {
+  const inputs = document.querySelectorAll("input");
+  const buttons = document.querySelectorAll("button");
+  const selects = document.querySelectorAll("select");
+  inputs.forEach((el) => (el.disabled = true));
+  buttons.forEach((el) => (el.disabled = true));
+  selects.forEach((el) => (el.disabled = true));
+}
+
+function enableAllInputs() {
+  const inputs = document.querySelectorAll("input");
+  const buttons = document.querySelectorAll("button");
+  const selects = document.querySelectorAll("select");
+  inputs.forEach((el) => (el.disabled = false));
+  buttons.forEach((el) => (el.disabled = false));
+  selects.forEach((el) => (el.disabled = false));
+}
+
+function handleCreateProject(event) {
+  disableAllInputs();
+  toggleModal();
+  createProject(event);
+}
+
 async function createProject(event) {
   event.preventDefault();
   let directory = document.getElementById("directory-path").textContent;
   let projectName = document.getElementById("projectName").value;
   let pack = document.getElementById("pack").value;
   let responseEl = document.getElementById("response");
-  let submitButton = document.getElementById("submit-button");
+  let submitButton = document.getElementById("btn-submit");
   try {
     submitButton.textContent = "Creating pack...";
     submitButton.disabled = true;
@@ -62,5 +108,6 @@ async function createProject(event) {
     submitButton.disabled = false;
     console.error(error);
     responseEl.innerHTML = error;
+    enableAllInputs();
   }
 }
