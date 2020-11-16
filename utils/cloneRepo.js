@@ -7,6 +7,11 @@ async function cloneRepo(directory, projectName, pack, res) {
         `cd / && cd ${directory} && npx -p @angular/cli ng new ${projectName} --defaults=true`,
         (error, stdout, stderr) => res.send(execResponse(error, stdout, stderr))
       );
+    case "node-express":
+      return exec(
+        `cd / && cd ${directory} && mkdir ${projectName} && cd ${projectName} && git init && git remote add origin https://github.com/starterpk/pack-node-express.git && git pull origin master && npm install`,
+        (error, stdout, stderr) => res.send(execResponse(error, stdout, stderr))
+      );
     case "react":
       return exec(
         `cd / && cd ${directory} && npx create-react-app ${projectName}`,
