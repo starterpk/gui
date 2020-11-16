@@ -13,6 +13,7 @@ async function getDir(direction, path, event = undefined) {
     let directoryNavbarHTML = `
     <div class="directory-navbar" id="directory-navbar">
       <div class="directory-path">${response.data.path.replaceAll("/", backButton)}</div>
+      <p id="directory-path" class="hidden">${response.data.path}</p>
     </div>`;
 
     let responseHTML = response.data.directories
@@ -30,24 +31,36 @@ async function getDir(direction, path, event = undefined) {
 }
 getDir("forward", "/");
 
+function handlePackChange(event) {
+  let pack = event.target.value;
+  let packImg = document.getElementById("pack-img");
+  let img = `<img src="packs/${pack}.png"} alt="${pack}" class="pack-img"/>`;
+  packImg.innerHTML = img;
+}
+
 async function createProject(event) {
   event.preventDefault();
-  let directory = document.getElementById("directory").value;
+  let directory = document.getElementById("directory-path").textContent;
   let projectName = document.getElementById("projectName").value;
   let pack = document.getElementById("pack").value;
-  console.log(directory);
-  console.log(projectName);
-  console.log(pack);
+  let responseEl = document.getElementById("response");
+  let submitButton = document.getElementById("submit-button");
   try {
+    submitButton.textContent = "Creating pack...";
+    submitButton.disabled = true;
     const response = await axios.post("/", {
       directory,
       projectName,
       pack,
     });
-    console.log(response);
-    let responseEl = document.getElementById("response");
+    if (response.status === 200) {
+      submitButton.textContent = "Success!";
+    }
     responseEl.innerHTML = response.data;
   } catch (error) {
+    submitButton.value = "Submit";
+    submitButton.disabled = false;
     console.error(error);
+    responseEl.innerHTML = error;
   }
 }

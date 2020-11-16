@@ -18,10 +18,36 @@ body {
 
 input {
   width: 100%;
+  padding: 10px;
 }
 
 select {
   width: 80%;
+  padding: 10px;
+}
+
+input,
+select,
+.directory-container {
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+p,
+label,
+input,
+select,
+button {
+  font-size: 1.25rem;
+}
+
+.submit-button {
+  padding: 10px 15px;
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #fc9f2c, #d910dc);
+  color: white;
 }
 
 .container {
@@ -38,6 +64,7 @@ img {
 
 .col-50 {
   width: 50%;
+  display: flex;
 }
 
 @media (max-width: 599px) {
@@ -47,7 +74,6 @@ img {
 }
 
 .directory-container {
-  border: 1px solid;
   width: 100%;
   max-width: 500px;
   height: 200px;
@@ -67,6 +93,17 @@ img {
 .directories-list {
   overflow: scroll;
   height: 100%;
+  direction: rtl;
+}
+
+.directories-list::-webkit-scrollbar {
+  width: 1em;
+  border-right: 1px solid;
+  border-right: 1px solid;
+}
+.directories-list::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
 
 .directory-path {
@@ -90,4 +127,14 @@ img {
   width: 100%;
   text-align: left;
   height: 30px;
+  font-size: 1rem;
+  color: black;
+}
+
+.hidden {
+  display: none;
+}
+
+.pack-img-container {
+  width: 20%;
 }

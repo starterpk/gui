@@ -49,7 +49,8 @@
       <div class="col-50">
         <div class="directory-container">
           <div id="directory-navbar">
-            <div class="directory-path">/</div>
+            <div id="directory-path" class="directory-path">/</div>
+            <p id="directory-path" class="hidden">/</p>
           </div>
           <div id="directories-list" class="directories-list"></div>
         </div>
@@ -73,11 +74,16 @@
         <label for="pack">What pack would you like to use?</label>
       </div>
       <div class="col-50">
-        <select name="pack" id="pack">
+    <select onchange="handlePackChange(event)"name="pack" id="pack">
           <% packs.forEach(function(pack){ %>
             <option value=<%= pack.value %>><%= pack.name %></option>
           <% }); %>
         </select>
+        <div id="pack-img" class="pack-img-container">
+          
+        </div>
+      </div>
+
       </div>
     </div>
 
@@ -85,13 +91,11 @@
       <div class="col-50">
       </div>
       <div class="col-50">
-  
-
+        <button class="submit-button" id="submit-button" onclick="createProject(event)">Submit</button>
         <p id="response"></p>
       </div>  
     </div>
 
-    <button onclick="createProject(event)">Submit</button>
 
 
 
