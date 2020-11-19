@@ -20,13 +20,10 @@ app.set("views", path.join(__dirname, "/views"));
 app
   .route("/")
   .get((req, res) => {
-    console.log("get");
-
     res.render("index", { packs: PACKS });
     // res.sendFile(path.join(__dirname + "/pack.html"));
   })
   .post((req, res) => {
-    console.log("post");
     const directory = req.body.directory;
     const projectName = req.body.projectName;
     const pack = req.body.pack;
