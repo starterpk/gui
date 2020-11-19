@@ -8,13 +8,14 @@ const readDir = require("./utils/readDir");
 
 const app = express();
 const server = http.createServer(app);
-const port = 3000;
+const port = 5749;
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(express.static(path.join(__dirname, "assets"))); // Require static assets from public folder
 
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/views"));
 
 app
   .route("/")
@@ -55,4 +56,5 @@ app.route("/dir").post((req, res) => {
 });
 
 server.listen(port);
-console.debug("Server listening on port " + port);
+
+module.exports = server;
